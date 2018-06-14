@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Home </title>
+	<link rel="stylesheet" type="text/css" href="home2.css">
+</head>
+<body>
+
+
+<div class="header">
+    <div class="container">
+      <ul class="nav">
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Photos</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Courses.html">Courses</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<div class="main-banner" id="main-banner">
+	<div class="imgbanbtn imgbanbtn-prev" id="imgbanbtn-prev"></div>
+	<div class="imgban" id="imgban3">
+		<div class="imgban-box">
+			
+		</div>
+	</div>
+	<div class="imgban" id="imgban2">
+		<div class="imgban-box">
+			
+		</div>
+	</div>
+	<div class="imgban" id="imgban1">
+		<div class="imgban-box">
+			
+		</div>
+	</div>
+	<div class="imgbanbtn imgbanbtn-next" id="imgbanbtn-next"></div>
+</div>
+
+<script>
+	var imageCount = 3;
+	var bannerStatus = 1;
+	var bannerTimer = 4000;
+
+	window.onload = function() {
+		bannerLoop();
+	}
+
+	var startBannerLoop = setInterval(function(){
+		bannerLoop();
+	}, bannerTimer);
+
+	document.getElementById("main-banner").onmouseenter = function(){
+		clearInterval(startBannerLoop);
+	}
+	document.getElementById("main-banner").onmouseleave = function(){
+		startBannerLoop = setInterval(function(){
+			bannerLoop();
+		}, bannerTimer);
+	}
+
+	document.getElementById("imgbanbtn-prev").onclick = function(){
+		/*I removed the status checks since they are no longer needed with the new loop I created to handle the backwards loop*/
+		bannerLoopBack();
+	}
+	document.getElementById("imgbanbtn-next").onclick = function(){
+		bannerLoop();
+	}
+
+	function bannerLoop() {
+		if (bannerStatus === 1) {
+			document.getElementById("imgban2").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban1").style.right = "0px";
+				document.getElementById("imgban1").style.zIndez = "1000";
+				document.getElementById("imgban2").style.right = "-100%";
+				document.getElementById("imgban2").style.zIndez = "1500";
+				document.getElementById("imgban3").style.right = "100%";
+				document.getElementById("imgban3").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban2").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 2;
+		}
+		else if (bannerStatus === 2) {
+			document.getElementById("imgban3").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban2").style.right = "0px";
+				document.getElementById("imgban2").style.zIndez = "1000";
+				document.getElementById("imgban3").style.right = "-100%";
+				document.getElementById("imgban3").style.zIndez = "1500";
+				document.getElementById("imgban1").style.right = "100%";
+				document.getElementById("imgban1").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban3").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 3;
+		}
+		else if (bannerStatus === 3) {
+			document.getElementById("imgban1").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban3").style.right = "0px";
+				document.getElementById("imgban3").style.zIndez = "1000";
+				document.getElementById("imgban1").style.right = "-100%";
+				document.getElementById("imgban1").style.zIndez = "1500";
+				document.getElementById("imgban2").style.right = "100%";
+				document.getElementById("imgban2").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban1").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 1;
+		}
+	}
+
+	/*This is the new loop which handles the backwards loop*/
+	function bannerLoopBack() {
+		if (bannerStatus === 1) {
+			document.getElementById("imgban3").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban1").style.right = "0px";
+				document.getElementById("imgban1").style.zIndez = "1000";
+				document.getElementById("imgban2").style.right = "-1200px";
+				document.getElementById("imgban2").style.zIndez = "1500";
+				document.getElementById("imgban3").style.right = "1200px";
+				document.getElementById("imgban3").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban3").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 2;
+		}
+		else if (bannerStatus === 2) {
+			document.getElementById("imgban2").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban3").style.right = "0px";
+				document.getElementById("imgban3").style.zIndez = "1000";
+				document.getElementById("imgban1").style.right = "-100%";
+				document.getElementById("imgban1").style.zIndez = "1500";
+				document.getElementById("imgban2").style.right = "100%";
+				document.getElementById("imgban2").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban2").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 3;
+		}
+		else if (bannerStatus === 3) {
+			document.getElementById("imgban1").style.opacity = "0";
+			setTimeout(function(){
+				document.getElementById("imgban2").style.right = "0px";
+				document.getElementById("imgban2").style.zIndez = "1000";
+				document.getElementById("imgban3").style.right = "-100%";
+				document.getElementById("imgban3").style.zIndez = "1500";
+				document.getElementById("imgban1").style.right = "100%";
+				document.getElementById("imgban1").style.zIndez = "500";
+			}, 500);
+			setTimeout(function(){
+				document.getElementById("imgban1").style.opacity = "1";
+			}, 1000);
+			bannerStatus = 1;
+		}
+	}
+</script>
+
+
+
+<div class="course-introduction">
+	<h4> Pick a Course</h4>
+<h5> Welcome to the Front-end web development courses, Watch, learn, and share the videos for free including HTML,CSS, JavaScript, jQuery, Angular.js, React.js, Vue.js.
+	I will be uploading some useful videos based on modern technologies, Hope you enjoy watching & learn these videos. 
+</h5>
+
+</div>
+
+
+
+<div class="main-page" style="padding-bottom: 30px;" >
+<div class="gallery">
+  <a target="_blank" href="HTML&CSS.html" >
+    <img src="img/htmlandcss.jpg" alt="Trolltunga Norway" style="height: 210px;">
+  </a>
+  <div class="desc"> HTML(Hypertext mark-up language) & CSS (Cascading style sheets)</div>
+</div>
+
+<div class="gallery" >
+  <a target="_blank" href="JavaScript.html">
+    <img src="img/javascript.jpg" alt="Forest" style="height: 230px;">
+  </a>
+  <div class="desc">JavaScript</div>
+</div>
+<div class="gallery" >
+  <a target="_blank" href="JavaScript.html">
+    <img src="img/jQuery.png" alt="Forest"  style="height: 230px;">
+  </a>
+  <div class="desc">jQuery</div>
+</div>
+
+
+
+<div class="gallery">
+  <a target="_blank" href="Angular.html">
+    <img src="img/Angular.jpg" alt="Mountains" style="height: 230px;">
+  </a>
+  <div class="desc">Angular.js</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="React.html">
+    <img src="img/react-js.png" alt="Mountains" style="height: 230px;">
+  </a>
+  <div class="desc">React.js</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="React.html">
+    <img src="img/Vue.jpg" alt="Mountains" style="height: 230px;">
+  </a>
+  <div class="desc">Vue.js</div>
+</div>
+
+
+
+<div style="width:100%;height:400px; margin-top: 100px;">
+  <img src="img/5.jpg" style="float:left;width:50%;height:550px;object-fit:cover;">
+  <img src="img/10.jpeg" style="float:left;width:50%;height:550px;object-fit:cover;">
+</div>
+
+<div style="width:100%;height:400px;">
+  <img src="img/6.jpg"  style="float:left;width:50%;height:550px;object-fit:cover; margin-bottom: 100px;">
+  <img src="img/7.jpg"  style="float:left;width:50%;height:550px;object-fit:cover; margin-bottom: 100px;">
+</div>
+
+
+<div class="supporting">
+    <div class="container">
+
+      <div class="col">
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg">
+        <h2>Design</h2>
+        <p>Make your projects look great and interact beautifully.</p>
+        <a class="btn-default" href="#">Learn more</a>
+      </div>
+
+      <div class="col">
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/develop.svg">
+        <h2>Develop</h2>
+        <p>Use modern tools to turn your design into a web site</p>
+        <a class="btn-default" href="#">Learn more</a>
+      </div>
+
+      <div class="col">
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/deploy.svg">
+        <h2>Deploy</h2>
+        <p>Use modern tools to turn your design into a web site</p>
+        <a class="btn-default" href="#">Learn more</a>
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+
+
+
+
+  <div class="footer">
+    <div class="container">
+      <p>&copy; WalidNoori 2017</p>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+(function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/e/2/e2e363f38422c128c1b13b432121eb1b/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
+</script>
+
+</body>
+</html>
